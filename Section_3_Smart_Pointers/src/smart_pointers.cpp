@@ -22,9 +22,22 @@ class Reporter
     std::string ID;
 };
 
-
 int main()
 {
-    
+    // Raw pointer
+    Reporter* rawPtr = new Reporter("RawPointer");
+    // Clean up raw pointer
+    delete rawPtr;
+
+    // 使用 unique_ptr
+    std::unique_ptr<Reporter> uniquePtr = std::make_unique<Reporter>("UniquePointer");
+
+    // 使用 shared_ptr
+    std::shared_ptr<Reporter> sharedPtr1 = std::make_shared<Reporter>("SharedPointer1");
+    std::shared_ptr<Reporter> sharedPtr2 = sharedPtr1;  // 共享所有权
+
+    // 使用 weak_ptr
+    std::weak_ptr<Reporter> weakPtr = sharedPtr1;  // 弱引用，不影响生命周期
+
     return 0;
 }
